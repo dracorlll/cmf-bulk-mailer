@@ -1,0 +1,11 @@
+{
+  "name": "cmf-bulk-mailer",
+  "version": "1.0.0",
+  "description": "Bulk Mailer for Çorlu Faculty of Engineering Announcements",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Engin Yüksel",
+  "license": "MIT"
+}
