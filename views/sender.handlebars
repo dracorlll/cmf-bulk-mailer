@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <form class="form-signin" method="post" action="/sender">
+                <div class="text-center mb-4">
+                    <h1 class="h3 mb-3 font-weight-normal">Gönderici Ayarları</h1>
+                </div>
+                <div class="form-label-group">
+                    <input type="text" id="inputHost" value="{{ host }}" name="host" class="form-control" placeholder="Host Adresi" required
+                           autofocus>
+                    <label for="inputHost">Host Adresi</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="number" id="inputPort" value="{{ port }}" name="port" class="form-control" placeholder="Port Numarası" required
+                           autofocus>
+                    <label for="inputPort">Port Numarası</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="email" id="inputEmail" value="{{ mail }}" name="email" class="form-control" placeholder="Email Adresi" required
+                           autofocus>
+                    <label for="inputEmail">Email Adresi</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="text" id="inputPassword" name="password" class="form-control" placeholder="Email Şifresi" required>
+                    <label for="inputPassword">Email Şifresi</label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Kaydet</button>
+                <button id="mailtest" class="btn btn-lg btn-light btn-block" type="button">Email Kontrol</button>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    $("#mailtest").click(function(){
+        $.get("/testmail", function(data, status){
+            console.log(data)
+            if (data === true) {
+                $("#mailtest").removeClass('btn-light')
+                $("#mailtest").addClass('btn-success')
+                $("#mailtest").text('Email Bilgileri Doğru')
+            }
+            else {
+                $("#mailtest").removeClass('btn-light')
+                $("#mailtest").addClass('btn-danger')
+                $("#mailtest").text('Email Bilgileri Yanlış')
+                alert("code: " + data.code + "\ncommand: " + data.command + "\nresponse: " + data.response + "\nresponseCode: " + data.responseCode)
+            }
+        });
+    });
+</script>

@@ -1,0 +1,82 @@
+
+<div class="container" id="monitoring">
+    <div class="row">
+        <div class="col-sm">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                <label class="custom-control-label" for="defaultUnchecked">İLK DEFA ÇALIŞTIRMA MODU</label>
+            </div>
+                <h1 class="h3 mb-3 font-weight-normal">Bu modda en son yapılan duyurular kaydedilir ve gönderilmez. Göndermek için yeni duyuru beklenir.</h1>
+            <h1 class="h3 mb-3 font-weight-normal">Hayalet mail: etheral.email üzerinden deneme amaçlı mail gönderme servisi</h1>
+
+        </div>
+        <div class="col-sm">
+            <button type="button" id="ghost" class="btn btn-primary">Hayalet mail gönder</button>
+            <button type="button" id="runStop" class="btn">{{runStop}}</button>
+        </div>
+        <div class="col-sm">
+            <button type="button" id="shutdown" class="btn btn-danger">Proğramı Kapat</button>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Hayalet Email Gönderildi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        if ($('#runStop').text() === 'Çalıştır')
+            $('#runStop').addClass('btn-success')
+        else
+            $('#runStop').addClass('btn-danger')
+    });
+
+    $("#runStop").click(function(){
+        $('.btn').prop('disabled', true)
+        if ($(this).text() === 'Çalıştır'){
+            if ($('#defaultUnchecked').prop('checked') === true) {
+                $.get("/firstRun", function(data, status){
+                    window.location.href = "/monitoring";
+                })
+            }
+            else {
+                $.get("/run", function(data, status){
+                    window.location.href = "/monitoring";
+                })
+            }
+        }
+        else {
+            $.get("/stop", function(data, status){
+                window.location.href = "/monitoring";
+            })
+        }
+
+    })
+    $("#shutdown").click(function(){
+        $.get("/shutdown", function(data, status){
+            $('html').remove()
+        })
+    })
+    $("#ghost").click(function(){
+        $('.btn').prop('disabled', true)
+        $.get("/ghost", function(data, status){
+            $('.modal-body').append('<a href=' + data + '>Görüntülemek için tıklayınız</a>')
+            $('#exampleModalLong').modal('show');
+        })
+    })
+    $("#exampleModalLong").on('hide.bs.modal', function(){
+        location.reload()
+    });
+</script>
+

@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+
+            <div class="text-center mb-4">
+                <h1 class="h3 mb-3 font-weight-normal">Alıcı Emailleri</h1>
+                <p class="mb-3 font-weight-normal">Alıcılar metin dosyası biçiminde olmalı.</p>
+                <p class="mb-3 font-weight-normal">Her satırda bir email olacak şekilde toplu olarak yüklenmelidir.</p>
+            </div>
+            <form class="form-signin" id="myForm" method="post" enctype="multipart/form-data" action="/receiver">
+                <div class="custom-file" style="margin-bottom: 1rem">
+                    <input type="file" name="receivers" class="custom-file-input" id="customFile" required>
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <button id="post-btn" class="btn btn-lg btn-primary btn-block" type="submit">Yükle</button>
+
+            </form>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        let fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
