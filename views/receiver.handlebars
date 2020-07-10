@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm">
+        <div class="col-sm mt-5">
             <form class="form-signin" id="myForm" method="post" enctype="multipart/form-data" action="/receiver">
 
             <div class="text-center mb-4">
@@ -8,9 +8,14 @@
                 <p class="mb-3 font-weight-normal">Alıcılar metin dosyası biçiminde olmalı.</p>
                 <p class="mb-3 font-weight-normal">Her satırda bir email olacak şekilde toplu olarak yüklenmelidir.</p>
             </div>
+
                 <div class="custom-file" style="margin-bottom: 1rem">
                     <input type="file" name="receivers" class="custom-file-input" id="customFile" required>
                     <label class="custom-file-label" for="customFile">Dosya Seç</label>
+                </div>
+                <div class="custom-control custom-checkbox mb-4">
+                    <input type="checkbox" name="mycheckbox" checked="checked" value="true" class="custom-control-input" id="defaultUnchecked">
+                    <label class="custom-control-label" for="defaultUnchecked">Önceki alıcıları sil.</label>
                 </div>
                 <button id="post-btn" class="btn btn-lg btn-primary btn-block" type="submit">Yükle</button>
 
@@ -19,6 +24,7 @@
     </div>
 </div>
 <script>
+
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function () {
         let fileName = $(this).val().split("\\").pop();

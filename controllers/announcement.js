@@ -55,7 +55,7 @@ module.exports = class Announcement {
 
     async isSentBefore(announs) {
         let isSent = await DB.findAnnouncement(announs)
-        return isSent === null;
+        return isSent === null
     }
 
     editContent(content) {

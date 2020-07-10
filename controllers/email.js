@@ -27,7 +27,7 @@ module.exports = {
         })
         console.log(info)
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
-        return info;
+        return info
 
     },
     ghostMail: async () => {
@@ -35,7 +35,7 @@ module.exports = {
         // Only needed if you don't have a real mail account for testing
         let receivers = await DB.findReceivers([/[0-9]{3}((0606)|(0656))[0-9]{3}/])
         receivers.forEach((val, i) => receivers[i] = val.studentMail)
-        let testAccount = await nodemailer.createTestAccount();
+        let testAccount = await nodemailer.createTestAccount()
 
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
@@ -46,16 +46,16 @@ module.exports = {
                 user: testAccount.user, // generated ethereal user
                 pass: testAccount.pass, // generated ethereal password
             },
-        });
+        })
 
         // send mail with defined transport object
         let info = await transporter.sendMail({
             from: 'Çorlu Mühendislik Fakültesi Bilgisayar Mühendisliği', // sender address
-            to: receivers, // list of receivers
+            to: (receivers === []) ? (receivers) : ('deneme@nku.com'), // list of receivers
             subject: "Hello ✔", // Subject line
             text: "Hello world?", // plain text body
             html: "<b>Hello world?</b>", // html body
-        });
+        })
 
         return nodemailer.getTestMessageUrl(info)
 

@@ -60,14 +60,14 @@ router.route('/receiver')
         res.render('receiver')
     })
     .post((req, res, next) => {
-        const form = formidable({multiples: true, uploadDir: __dirname});
+        const form = formidable({multiples: true, uploadDir: __dirname})
         form.parse(req, (err, fields, files) => {
             if (err) {
                 next(err)
             }
             DB.readUploadedFile(files.receivers.path).then(r => {
                 if (r.students.length !== 0)
-                    DB.insertReceivers(r.students)
+                    DB.insertReceivers(r.students, Boolean(fields.mycheckbox))
                 res.render('modal', {
                     line: r.unwritten.length + r.students.length,
                     saved: r.students.length,
@@ -75,7 +75,7 @@ router.route('/receiver')
                     lineNumber: r.unwritten
                 })
             })
-        });
+        })
     })
 
 //monitoring sayfası
@@ -95,7 +95,7 @@ router.route('/firstRun')
         let announs = new Announcement(1, 1, 1)
         announs.firstRun(department.url).then(r => {
             isRunning = true
-            setTimer = setInterval(timer, interval);
+            setTimer = setInterval(timer, interval)
             res.send('ok')
         })
     })
@@ -103,7 +103,7 @@ router.route('/firstRun')
 router.route('/run')
     .get((req, res) => {
         isRunning = true
-        setTimer = setInterval(timer, interval);
+        setTimer = setInterval(timer, interval)
         res.send('ok')
     })
 
@@ -140,7 +140,7 @@ function timer() {
 
 function stopTimer() {
     isRunning = false
-    clearInterval(setTimer);
+    clearInterval(setTimer)
 }
 
-module.exports = router;
+module.exports = router

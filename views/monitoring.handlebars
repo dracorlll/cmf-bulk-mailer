@@ -1,21 +1,21 @@
 
 <div class="container" id="monitoring">
     <div class="row">
-        <div class="col-sm">
-            <div class="custom-control custom-checkbox">
+        <div class="col-sm text-center mt-4">
+            <button type="button" id="runStop" class="btn">{{runStop}}</button>
+            <div class="custom-control custom-checkbox mt-4">
                 <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
                 <label class="custom-control-label" for="defaultUnchecked">İLK DEFA ÇALIŞTIRMA MODU</label>
             </div>
-                <h1 class="h3 mb-3 font-weight-normal">Bu modda en son yapılan duyurular kaydedilir ve gönderilmez. Göndermek için yeni duyuru beklenir.</h1>
-            <h1 class="h3 mb-3 font-weight-normal">Hayalet mail: <a href="https://ethereal.email/" target="_blank">ethereal.email</a> üzerinden deneme amaçlı mail gönderme servisi</h1>
-
+            <p class="mb-3 font-weight-normal mt-4">Bu modda en son yapılan duyurular kaydedilir ve gönderilmez. Göndermek için yeni duyuru beklenir.</p>
         </div>
-        <div class="col-sm">
+        <div class="col-sm text-center mt-4">
             <button type="button" id="ghost" class="btn btn-primary">Hayalet mail gönder</button>
-            <button type="button" id="runStop" class="btn">{{runStop}}</button>
+            <p class="mb-3 font-weight-normal mt-4">Hayalet mail: <a href="https://ethereal.email/" target="_blank">ethereal.email</a> üzerinden deneme amaçlı mail gönderir.</p>
         </div>
-        <div class="col-sm">
-            <button type="button" id="shutdown" class="btn btn-danger">Programı Kapat</button>
+        <div class="col-sm text-center mt-4">
+            <button type="button" id="shutdown" class="btn btn-danger">Kapat</button>
+            <p class="mb-3 font-weight-normal mt-4">Programı tamamen kapatır.</p>
         </div>
     </div>
 </div>

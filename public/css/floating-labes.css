@@ -1,6 +1,9 @@
 body{
     background-color: #93dbff
 }
+#shutdown, #ghost, #runStop{
+    width: -webkit-fill-available;
+}
 #monitoring{
     margin-top: 25px;
 }

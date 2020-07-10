@@ -45,7 +45,7 @@ module.exports = {
         const db = await MongoClient.connect(url)
         const dbo = db.db("mydb")
 
-        return dbo.collection("students").find({studentMail: {$in: department}}, {projection: {_id: 0}}).toArray();
+        return dbo.collection("students").find({studentMail: {$in: department}}, {projection: {_id: 0}}).toArray()
     },
     readUploadedFile: async (filePath) => {
         let students = []
@@ -71,11 +71,14 @@ module.exports = {
         })
         return {unwritten: unwritten, students: students}
     },
-    insertReceivers: async (students) => {
+    insertReceivers: async (students, remove) => {
         const db = await MongoClient.connect(url)
         const dbo = db.db("mydb")
         try {
-            await dbo.collection('students').drop()
+            if(remove){
+                await dbo.collection('students').drop()
+            }
+
         } catch (e) {
             
         }
