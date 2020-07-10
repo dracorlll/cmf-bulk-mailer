@@ -1,6 +1,6 @@
 {
   "name": "cmf-bulk-mailer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bulk Mailer for Çorlu Faculty of Engineering Announcements",
   "main": "app.js",
   "scripts": {

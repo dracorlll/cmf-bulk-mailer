@@ -1,9 +1,6 @@
 const express = require('express')
 const router = require("./routes/router");
 const bodyParser = require("body-parser");
-const Department = require('./helpers/Departments')
-const Announcement = require('./controllers/announcement.js')
-const email = require("./controllers/email")
 const exphbs = require("express-handlebars")
 
 

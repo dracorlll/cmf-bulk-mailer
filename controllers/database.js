@@ -15,8 +15,11 @@ module.exports = {
         const dbo = db.db("mydb")
 
         //users tablosunu siliyoruz çünkü sadece tek kullanıcı olacak
-        await dbo.collection('users').drop()
+        try {
+            await dbo.collection('users').drop()
+        } catch (e) {
 
+        }
         await dbo.collection('users').insertOne({host: host, port: port, mail: mail, pass: pass})
     },
     findUser: async () => {
@@ -24,6 +27,12 @@ module.exports = {
         const dbo = db.db("mydb")
 
         return dbo.collection("users").findOne()
+    },
+    findReceiver: async () => {
+        const db = await MongoClient.connect(url)
+        const dbo = db.db("mydb")
+
+        return dbo.collection("students").findOne()
     },
     findAnnouncement: async (address) => {
         const db = await MongoClient.connect(url)

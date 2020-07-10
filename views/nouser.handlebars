@@ -3,20 +3,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Dosya Kaydedildi</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Kontrol Merkezi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <ul>
-                    <li>Okunan Satır: {{ line }}</li>
-                    <li>Kaydedilen Mail Sayısı: {{ saved }}</li>
-                    <li>Hatalı Satır Sayısı: {{ err }}</li>
-                    {{#each lineNumber}}
-                        <li>{{this}}</li>
-                    {{/each}}
-                </ul>
+                Kayıtlı kullanıcı yok.
+                Email gönderebilmek için kullandığınız mail servisine göre ayarlarını yapmalısınız.
+                <a href="https://support.google.com/mail/answer/7126229?hl=tr">Google için giden mail ayarları</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
@@ -30,6 +25,6 @@
         $('#exampleModalLong').modal('show');
     });
     $("#exampleModalLong").on('hide.bs.modal', function(){
-        window.location.href = "/monitoring";
+        window.location.href = "/sender";
     });
 </script>

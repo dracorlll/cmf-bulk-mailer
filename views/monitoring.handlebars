@@ -7,7 +7,7 @@
                 <label class="custom-control-label" for="defaultUnchecked">İLK DEFA ÇALIŞTIRMA MODU</label>
             </div>
                 <h1 class="h3 mb-3 font-weight-normal">Bu modda en son yapılan duyurular kaydedilir ve gönderilmez. Göndermek için yeni duyuru beklenir.</h1>
-            <h1 class="h3 mb-3 font-weight-normal">Hayalet mail: etheral.email üzerinden deneme amaçlı mail gönderme servisi</h1>
+            <h1 class="h3 mb-3 font-weight-normal">Hayalet mail: <a href="https://ethereal.email/" target="_blank">ethereal.email</a> üzerinden deneme amaçlı mail gönderme servisi</h1>
 
         </div>
         <div class="col-sm">
@@ -15,7 +15,7 @@
             <button type="button" id="runStop" class="btn">{{runStop}}</button>
         </div>
         <div class="col-sm">
-            <button type="button" id="shutdown" class="btn btn-danger">Proğramı Kapat</button>
+            <button type="button" id="shutdown" class="btn btn-danger">Programı Kapat</button>
         </div>
     </div>
 </div>
@@ -71,7 +71,7 @@
     $("#ghost").click(function(){
         $('.btn').prop('disabled', true)
         $.get("/ghost", function(data, status){
-            $('.modal-body').append('<a href=' + data + '>Görüntülemek için tıklayınız</a>')
+            $('.modal-body').append('<a target="_blank" href=' + data + '>Görüntülemek için tıklayınız</a>')
             $('#exampleModalLong').modal('show');
         })
     })

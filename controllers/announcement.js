@@ -2,7 +2,6 @@ const cheerio = require('cheerio')
 const got = require('got')
 const DB = require("./database")
 const email = require("./email")
-const Department = require('../helpers/Departments')
 
 module.exports = class Announcement {
 
@@ -35,8 +34,8 @@ module.exports = class Announcement {
         else
             return 'old announcement'
     }
-    async firstRun(){
-        for await (const [key, value] of Object.entries(Department.url)) {
+    async firstRun(urls){
+        for await (const [key, value] of Object.entries(urls)) {
             //get all announcements
             let response = await this.getRequest(value)
             let $ = cheerio.load(response.body)

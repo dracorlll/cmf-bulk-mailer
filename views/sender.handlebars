@@ -28,30 +28,43 @@
                     <label for="inputPassword">Email Şifresi</label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Kaydet</button>
-                <button id="mailtest" class="btn btn-lg btn-light btn-block" type="button">Email Kontrol</button>
-
             </form>
         </div>
 
     </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Gönderici Bilgilendirme</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{#if failed}}
+                    <ul>
+                        {{#each errResponse}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+                {{#if saved}}
+                    <h2>Başarıyla Kaydedildi</h2>
+                {{/if}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+    $( document ).ready(function() {
+        if (($('.modal-body').has('ul').length + $('.modal-body').has('h2').length) !== 0)
+            $('#exampleModalLong').modal('show');
 
-    $("#mailtest").click(function(){
-        $.get("/testmail", function(data, status){
-            console.log(data)
-            if (data === true) {
-                $("#mailtest").removeClass('btn-light')
-                $("#mailtest").addClass('btn-success')
-                $("#mailtest").text('Email Bilgileri Doğru')
-            }
-            else {
-                $("#mailtest").removeClass('btn-light')
-                $("#mailtest").addClass('btn-danger')
-                $("#mailtest").text('Email Bilgileri Yanlış')
-                alert("code: " + data.code + "\ncommand: " + data.command + "\nresponse: " + data.response + "\nresponseCode: " + data.responseCode)
-            }
-        });
     });
 </script>

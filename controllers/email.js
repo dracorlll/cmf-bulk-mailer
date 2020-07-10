@@ -25,8 +25,7 @@ module.exports = {
             subject: subject + ' Duyuru: ' + title, // Subject line
             html: content, // html body
         })
-
-        console.log("Message sent: %s", info.messageId)
+        console.log(info)
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
         return info;
 
@@ -52,7 +51,7 @@ module.exports = {
         // send mail with defined transport object
         let info = await transporter.sendMail({
             from: 'Çorlu Mühendislik Fakültesi Bilgisayar Mühendisliği', // sender address
-            to: (receivers === []) ? (receivers) : ('deneme@nku.com'), // list of receivers
+            to: receivers, // list of receivers
             subject: "Hello ✔", // Subject line
             text: "Hello world?", // plain text body
             html: "<b>Hello world?</b>", // html body
@@ -61,16 +60,14 @@ module.exports = {
         return nodemailer.getTestMessageUrl(info)
 
     },
-    testMail: async () => {
-        let user = await DB.findUser()
-
+    testMail: async (user) => {
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
             host: user.host,
             port: user.port,
             auth: {
-                user: user.mail, // generated ethereal user
-                pass: user.pass, // generated ethereal password
+                user: user.email, // generated ethereal user
+                pass: user.password, // generated ethereal password
             },
         })
 
