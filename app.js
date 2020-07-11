@@ -3,9 +3,8 @@ const router = require("./routes/router")
 const bodyParser = require("body-parser")
 const exphbs = require("express-handlebars")
 
-
 //express
-const port = 80
+const port = 3000
 const app = express()
 app.use(express.static('public'))
 
@@ -25,7 +24,8 @@ app.set('view engine', 'handlebars')
 app.use("/", router)
 
 //Makes the app listen to port 3000
-app.listen(port)
+app.listen(port, () => console.log('Running on port: ', port))
+
 
 
 

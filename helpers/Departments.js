@@ -33,5 +33,4 @@ const url = {
     makine: "http://cmf-mm.web.nku.edu.tr/0/duyuruarsiv/m/",
     tekstil: "http://cmf-tm.web.nku.edu.tr/0/duyuruarsiv/m/"
 }
-
 module.exports = {regex, url, faculty}

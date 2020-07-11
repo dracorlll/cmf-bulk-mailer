@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient
-const url = "mongodb://localhost:27017/mydb"
+const url = "mongodb://mongodb:27017/mydb"
 const fs = require('fs')
 const readLine = require('readline')
 
@@ -23,10 +23,12 @@ module.exports = {
         await dbo.collection('users').insertOne({host: host, port: port, mail: mail, pass: pass})
     },
     findUser: async () => {
+
         const db = await MongoClient.connect(url)
         const dbo = db.db("mydb")
 
         return dbo.collection("users").findOne()
+
     },
     findReceiver: async () => {
         const db = await MongoClient.connect(url)
@@ -75,12 +77,12 @@ module.exports = {
         const db = await MongoClient.connect(url)
         const dbo = db.db("mydb")
         try {
-            if(remove){
+            if (remove) {
                 await dbo.collection('students').drop()
             }
 
         } catch (e) {
-            
+
         }
         await dbo.collection("students").insertMany(students)
     }
