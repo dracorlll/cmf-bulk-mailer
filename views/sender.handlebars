@@ -65,6 +65,10 @@
     $( document ).ready(function() {
         if (($('.modal-body').has('ul').length + $('.modal-body').has('h2').length) !== 0)
             $('#exampleModalLong').modal('show');
+    });
+    $("#exampleModalLong").on('hide.bs.modal', function(){
+        if ($('.modal-body').has('h2').length > 0)
+            window.location.href = "/receiver";
 
     });
 </script>

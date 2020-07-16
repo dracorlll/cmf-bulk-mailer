@@ -28,7 +28,8 @@ module.exports = class Announcement {
             let announceContent = this.editContent(fetchAnnounce.body)
 
             //send announcement to the receivers
-            return await email.send(announceContent.title, this.department, announceContent.content, this.regex)
+            if (announceContent.content !== null)
+                return await email.send(announceContent.title, this.department, announceContent.content, this.regex)
         }
         //else
         else
@@ -40,8 +41,11 @@ module.exports = class Announcement {
             let response = await this.getRequest(value)
             let $ = cheerio.load(response.body)
             //checking the most recent announcement
-            let announce = $('#icerik > div > a:nth-child(2)')
-            await DB.insertAnnouncement(announce.text(), announce.attr('href'))
+            for (let i = 2; i < 5; i++) {
+                let announce = $('#icerik > div > a:nth-child(' + i + ')')
+                await DB.insertAnnouncement(announce.text(), announce.attr('href'))
+            }
+
         }
         return true
     }

@@ -19,15 +19,12 @@ module.exports = {
             },
         })
         // send mail with defined transport object
-        let info = await transporter.sendMail({
+        return await transporter.sendMail({
             from: 'Çorlu Mühendislik Fakültesi', // sender address
             bcc: receivers, // list of receivers
             subject: subject + ' Duyuru: ' + title, // Subject line
             html: content, // html body
         })
-        console.log(info)
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
-        return info
 
     },
     ghostMail: async () => {
@@ -51,7 +48,7 @@ module.exports = {
         // send mail with defined transport object
         let info = await transporter.sendMail({
             from: 'Çorlu Mühendislik Fakültesi Bilgisayar Mühendisliği', // sender address
-            to: (receivers === []) ? (receivers) : ('deneme@nku.com'), // list of receivers
+            to: (receivers !== []) ? (receivers) : ('deneme@nku.com'), // list of receivers
             subject: "Hello ✔", // Subject line
             text: "Hello world?", // plain text body
             html: "<b>Hello world?</b>", // html body
