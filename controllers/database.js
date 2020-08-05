@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient
-const url = "mongodb://mongodb:27017/mydb"
+const url = (process.argv[2] === []) ? ("mongodb://mongodb:27017/mydb") : ("mongodb://" + process.argv[2] + ":27017/mydb")
 const fs = require('fs')
 const readLine = require('readline')
 
